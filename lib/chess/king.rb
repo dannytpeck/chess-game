@@ -11,8 +11,8 @@ class King < Piece
   end
 
   def symbol
-    return "\u2654" if self.color == :white
-    return "\u265A" if self.color == :black
+    return "K" if self.color == :white
+    return "k" if self.color == :black
   end  
 
 end

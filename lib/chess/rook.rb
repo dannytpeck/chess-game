@@ -18,8 +18,8 @@ class Rook < Piece
   end
 
   def symbol
-    return "\u2656" if self.color == :white
-    return "\u265C" if self.color == :black
+    return "R" if self.color == :white
+    return "r" if self.color == :black
   end
 
 end

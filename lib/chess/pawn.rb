@@ -11,8 +11,8 @@ class Pawn < Piece
   end
 
   def symbol
-    return "\u2659" if self.color == :white
-    return "\u265F" if self.color == :black
+    return "P" if self.color == :white
+    return "p" if self.color == :black
   end
 
 end

@@ -21,7 +21,10 @@ class Board
   end
 
   def draw_board
-    grid.each do |row|
+    puts "  x 0 1 2 3 4 5 6 7"
+    puts "y  ----------------"
+    grid.each_with_index do |row, index|
+      print index.to_s + " | "
       puts row.map { |square| square.value == "" ? "_" : square.value.symbol }.join(" ")
     end
   end

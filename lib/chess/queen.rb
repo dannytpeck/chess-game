@@ -28,8 +28,8 @@ class Queen < Piece
   end
 
   def symbol
-    return "\u2655" if self.color == :white
-    return "\u265B" if self.color == :black
+    return "Q" if self.color == :white
+    return "q" if self.color == :black
   end
 
 end

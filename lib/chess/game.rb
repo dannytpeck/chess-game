@@ -4,7 +4,11 @@ class Game
   def initialize(players, board = Board.new)
     @players = players
     @board = board
-    @current_player, @other_player = players.shuffle
+    if players[0].color == :white
+      @current_player, @other_player = players
+    else
+      @current_player, @other_player = players[1], players[0]
+    end
   end
 
   def switch_players
@@ -39,11 +43,44 @@ class Game
   end
 
   def play
-    board.draw_board
-    puts solicit_from_move
-    move_from = get_move
-    puts solicit_to_move
-    move_to = get_move
+    puts "#{current_player.name} is playing white and goes first."
+    loop do
+      board.draw_board # Display board
+      puts ""
+      puts solicit_from_move
+      x1, y1 = get_move
+
+      if board.get_square(x1, y1).value == ""
+        puts "There's no piece in that square!"
+        next
+      end
+
+      moving_piece = board.get_square(x, y).value
+
+      if moving_piece.color != current_player.color
+        puts "You can only move your own pieces!"
+        next
+      end
+
+      puts solicit_to_move
+      x2, y2 = get_move
+
+      if !moving_piece.possible_moves.include?([x2, y2])
+        puts "That piece can't be moved there"
+        next
+      end
+
+      if get_square(x2, y2).value.color == current_player.color
+        puts "One of your pieces is already occupying that square!"
+        next
+      end
+
+      # if enemy piece in square, do capture
+
+      # move piece to new square
+
+
+    end
   end
 
   private
