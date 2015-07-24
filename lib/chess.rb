@@ -8,5 +8,6 @@ require_relative "chess/king"
 require_relative "chess/board"
 require_relative "chess/square"
 require_relative "chess/game"
+require_relative "chess/player"
 
 # Requirements used by other files

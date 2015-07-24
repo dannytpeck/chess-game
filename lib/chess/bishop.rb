@@ -18,4 +18,9 @@ class Bishop < Piece
 
   end
 
+  def symbol
+    return "\u2657" if self.color == :white
+    return "\u265D" if self.color == :black
+  end
+
 end

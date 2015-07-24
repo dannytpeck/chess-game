@@ -10,4 +10,9 @@ class Pawn < Piece
     moves.map { |x| x if is_valid_move?(x) }.compact
   end
 
+  def symbol
+    return "\u2659" if self.color == :white
+    return "\u265F" if self.color == :black
+  end
+
 end

@@ -16,5 +16,10 @@ class Rook < Piece
     moves.map { |x| x if is_valid_move?(x) }.compact
 
   end
-  
+
+  def symbol
+    return "\u2656" if self.color == :white
+    return "\u265C" if self.color == :black
+  end
+
 end

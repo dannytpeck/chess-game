@@ -1,4 +1,4 @@
-require "lib/chess.rb"
+require "./lib/chess.rb"
 
 puts "Welcome to Chess - Made in Ruby!"
 
