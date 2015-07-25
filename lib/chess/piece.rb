@@ -1,14 +1,16 @@
 class Piece
-  attr_accessor :x, :y, :color
+  attr_reader :player, :type, :display, :moves, :special_moves
+  attr_accessor :cell, :notation
 
-  def initialize(x, y, color)
-    @x = x
-    @y = y
-    @color = color
+  def initialize
+    @cell = []
   end
 
-  def is_valid_move?(location)
-    location[0] >= 0 && location[1] >= 0 && location[0] < 8 && location[1] < 8
+  def valid_move?(move)
+    return @moves.include?(move)
+  end
+
+  def update
   end
 
 end

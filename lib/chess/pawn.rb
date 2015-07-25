@@ -1,18 +1,33 @@
 class Pawn < Piece
 
-  def possible_moves
-    moves = []
+  def initialize(player)
+    @player = player
+    @type = "p"
+    @display = type + player.to_s
+    @moves = []
+    @special_moves = []
 
-    moves << [@x + 1, @y] << [@x - 1, @y] << [@x, @y + 1] << [@x, @y + 2] <<
-             [@x, @y - 1] << [@x + 1, @y + 1] << [@x - 1, @y - 1] << 
-             [@x + 1, @y - 1] << [@x - 1, @y + 1]
-
-    moves.map { |x| x if is_valid_move?(x) }.compact
+    if player == 1
+      @moves << [0, 1] << [0, 2]
+      @special_moves << [1, 1] << [-1, 1]
+    else
+      @moves << [0, -1] << [0, -2]
+      @special_moves << [1, -1] << [-1, -1]
+    end
   end
 
-  def symbol
-    return "P" if self.color == :white
-    return "p" if self.color == :black
+  def update
+    @moves.clear
+    if player == 1
+      @moves << [0, 1]
+    else
+      @moves << [0, -1]
+    end
+  end
+
+  def valid_move?(move, capture)
+    return @moves.include?(move) if capture == false
+    return @special_moves.include?(move) if capture == true
   end
 
 end
