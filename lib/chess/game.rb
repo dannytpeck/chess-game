@@ -16,11 +16,11 @@ class Game
   end
 
   def solicit_from_move
-    "Select an x and y coordinate for the piece you wish to move. (ex: 3 3)"
+    "#{current_player.name} - Select an x and y coordinate for the piece you wish to move. (ex: 3 3)"
   end
 
   def solicit_to_move
-    "Select an x and y coordinate for where you wish to move the piece. (ex: 3 3)"
+    "#{current_player.name} - Select an x and y coordinate for where you wish to move the piece. (ex: 3 3)"
   end
 
   def get_move
@@ -55,7 +55,7 @@ class Game
         next
       end
 
-      moving_piece = board.get_square(x, y).value
+      moving_piece = board.get_square(x1, y1).value
 
       if moving_piece.color != current_player.color
         puts "You can only move your own pieces!"
@@ -66,26 +66,31 @@ class Game
       x2, y2 = get_move
 
       if !moving_piece.possible_moves.include?([x2, y2])
-        puts "That piece can't be moved there"
+        puts "That piece can't be moved there!"
         next
       end
 
-      if get_square(x2, y2).value.color == current_player.color
-        puts "One of your pieces is already occupying that square!"
-        next
-      end
+      if board.get_square(x2, y2).value != ""
+        if board.get_square(x2, y2).value.color == current_player.color
+          puts "One of your pieces is already occupying that square!"
+          next
+        end
 
-      # if enemy piece in square, do capture
+        # if enemy piece in square, do capture
+        if board.get_square(x2, y2).value.color == other_player.color
+          puts "#{board.get_square(x2, y2).value.class} captured!"
+        end
+      end
 
       # move piece to new square
+      moving_piece.x = x2
+      moving_piece.y = y2
+      board.get_square(x2, y2).value = moving_piece
+      board.empty_square(x1, y1)
 
-
+      switch_players
+      
     end
-  end
-
-  private
-
-  def human_move_to_coordinate(human_move)
   end
 
 end

@@ -14,6 +14,10 @@ class Board
     get_square(x, y).value = value
   end
 
+  def empty_square(x, y)
+    grid[y][x] = Square.new
+  end
+
   def check
   end
 
